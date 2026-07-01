@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио — Python / ML разработчик</title>
+<meta name="description" content="Портфолио разработчика: ML, Python-бэкенд, ASR, full-stack. Проекты, стек, контакты.">
+<style>
+  :root{
+    --bg:#0a0e14; --bg2:#11161f; --card:#161c27; --line:#222b3a;
+    --txt:#e6edf3; --muted:#8b97a8; --accent:#56d3a0; --accent2:#4f8cff;
+    --tag:#1d2735; --tagtxt:#9fb3cf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  /* hero */
+  header{padding:80px 0 50px;border-bottom:1px solid var(--line);
+    background:radial-gradient(900px 400px at 75% -10%,rgba(79,140,255,.12),transparent 60%),
+               radial-gradient(700px 350px at 10% 0%,rgba(86,211,160,.10),transparent 55%)}
+  .eyebrow{color:var(--accent);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;margin-bottom:14px}
+  h1{font-size:clamp(32px,6vw,52px);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .role{font-size:clamp(18px,3vw,24px);color:var(--muted);margin-top:14px;font-weight:500}
+  .pitch{margin-top:22px;max-width:680px;color:#cbd5e1;font-size:17px}
+  .contacts{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid var(--line);
+    border-radius:10px;background:var(--card);font-size:14px;font-weight:500;transition:.15s;color:var(--txt)}
+  .btn:hover{border-color:var(--accent2);transform:translateY(-1px)}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));border:none;color:#06121e;font-weight:700}
+  /* sections */
+  section{padding:60px 0}
+  .h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+  .h2big{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:34px}
+  /* projects */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}.contacts{gap:8px}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;transition:.18s;position:relative;overflow:hidden}
+  .card:hover{border-color:var(--accent2);transform:translateY(-3px);box-shadow:0 12px 40px -12px rgba(79,140,255,.25)}
+  .card .emoji{font-size:30px;margin-bottom:12px}
+  .card h3{font-size:20px;font-weight:750;margin-bottom:4px}
+  .card .sub{color:var(--accent);font-size:13px;font-weight:600;margin-bottom:12px}
+  .card p{color:#bcc8d6;font-size:14.5px;flex:1}
+  .metrics{display:flex;gap:18px;margin:16px 0 4px;flex-wrap:wrap}
+  .metric{font-size:13px;color:var(--muted)}
+  .metric b{display:block;color:var(--txt);font-size:18px;font-weight:800}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+  .tag{background:var(--tag);color:var(--tagtxt);font-size:12px;padding:4px 10px;border-radius:7px;font-weight:500}
+  .links{display:flex;gap:14px;margin-top:18px;font-size:13.5px;font-weight:600}
+  .links a{color:var(--accent2)}
+  .links a:hover{text-decoration:underline}
+  .links a.demo{color:var(--accent)}
+  /* skills */
+  .skillgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:720px){.skillgrid{grid-template-columns:1fr}}
+  .skillcol{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:20px}
+  .skillcol h4{font-size:15px;margin-bottom:12px;color:var(--txt)}
+  .skillcol ul{list-style:none;color:var(--muted);font-size:14px}
+  .skillcol li{padding:3px 0}
+  .skillcol li::before{content:"▸ ";color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px;text-align:center}
+  footer a{color:var(--accent2)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="name"></h1>
+    <div class="role" id="role"></div>
+    <p class="pitch" id="pitch"></p>
+    <div class="contacts" id="contacts"></div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="h2">Проекты</div>
+    <div class="h2big">Что я сделал</div>
+    <div class="grid" id="projGrid"></div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="h2">Стек</div>
+    <div class="h2big">Чем работаю</div>
+    <div class="skillgrid" id="skillGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" id="footer"></div>
+</footer>
+
+<script>
+/* ============ ЕДИНЫЙ КОНФИГ — правится здесь ============ */
+const CONFIG = {
+  name: "Вадим Бочаров",
+  role: "Python / Go / ML разработчик · Backend · Data",
+  eyebrow: "Открыт к удалённой работе · РФ",
+  city: "Казань",
+  pitch: "Делаю проекты полного цикла: от ML-пайплайна и Go-микросервисов до фронтенда и embedded. ВКР по ML довёл до сервиса в проде, собрал event-driven микросервисы на Go + Kafka, full-stack ASR с диаризацией спикеров, веб- и десктоп-приложения. Ищу удалённую работу — рассмотрю Junior/Middle позиции.",
+  contacts: [
+    { label: "GitHub", href: "https://github.com/F-YOHS", primary:false },
+    { label: "Демо ML (HuggingFace)", href: "https://huggingface.co/spaces/ADRMLAU/gold-behavior-predictor", primary:false },
+    { label: "Email", href: "mailto:vvadimbocharov@gmail.com", primary:true },
+    { label: "Telegram", href: "https://t.me/hmm_v0dimm", primary:false },
+  ],
+  projects: [
+    {
+      emoji:"🔬", title:"AlloyPredictor", sub:"ML-предиктор свойств сплавов · ВКР",
+      desc:"По составу и пористости сплава предсказывает 5 механических свойств. Гибридная модель: нейросеть-ансамбль (E,G) + XGBoost (σ,σв) + CatBoost (ε). Magpie-признаки дают экстраполяцию на новые составы. Доведено до прода на HuggingFace.",
+      metrics:[{v:"R²≈0.84",k:"средний по 5 св-вам"},{v:"~1000",k:"сплавов в обучении"},{v:"85",k:"элементов таблицы"}],
+      tags:["Python","PyTorch","XGBoost","CatBoost","scikit-learn","Gradio","HF Spaces"],
+      links:[{t:"Живое демо",h:"https://huggingface.co/spaces/ADRMLAU/gold-behavior-predictor",demo:true},{t:"GitHub",h:"https://github.com/F-YOHS/alloy-predictor"}]
+    },
+    {
+      emoji:"⚖️", title:"Court Transcriber", sub:"Full-stack ASR с диаризацией спикеров",
+      desc:"Расшифровка длинных заседаний с разделением «кто говорил». FastAPI-бэкенд, очередь задач, WhisperX на GPU, диаризация NeMo Sortformer/pyannote, юридический словарь, веб-клиент и экспорт протокола. Сменные ASR-движки через .env.",
+      metrics:[{v:"3",k:"ASR-бэкенда"},{v:"2",k:"движка диаризации"},{v:"∞",k:"длина записи (очередь)"}],
+      tags:["Python","FastAPI","WhisperX","NeMo","pyannote","CUDA","JS"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/court-transcriber"}]
+    },
+    {
+      emoji:"🎙️", title:"MeetScribe", sub:"Локальный AI-ассистент онлайн-встреч",
+      desc:"Десктоп-приложение: real-time транскрипция системного звука и подсказки от локальной LLM — полностью оффлайн, ни байта аудио в облако. Electron ↔ Python-сайдкар по stdio, VAD режет тишину до Whisper, LLM на локальном Ollama.",
+      metrics:[{v:"100%",k:"оффлайн / on-device"},{v:"real-time",k:"транскрипция"},{v:"GPU",k:"ускорение CUDA"}],
+      tags:["Electron","React","TypeScript","Tailwind","Python","faster-whisper","Ollama"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/meetscribe"}]
+    },
+    {
+      emoji:"📥", title:"TikTok → Каталог проектов", sub:"Data-пайплайн: видео → структурированные данные",
+      desc:"Из сохранённых TikTok-роликов собирает поисковый каталог упомянутых инструментов. yt-dlp + tikwm → Whisper (речь) + OCR (слайды) → извлечение названий проектов → самодостаточный index.html с поиском и фильтром.",
+      metrics:[{v:"33",k:"ролика разобрано"},{v:"176",k:"проектов извлечено"},{v:"10",k:"категорий"}],
+      tags:["Python","yt-dlp","Whisper","ffmpeg","OCR","Bash"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/tiktok-saved-catalog"}]
+    },
+    {
+      emoji:"📨", title:"Kafka-not", sub:"Event-driven микросервисы на Go + Kafka",
+      desc:"Пайплайн уведомлений на событиях: регистрация пользователя публикует событие в Kafka, а сервисы email / SMS / analytics реагируют независимо через топики. Go, Docker Compose, чистое разделение сервисов.",
+      metrics:[{v:"4",k:"микросервиса"},{v:"Kafka",k:"событийная шина"},{v:"Go",k:"+ Docker"}],
+      tags:["Go","Apache Kafka","Docker","Microservices","Event-driven"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/Kafka-not"}]
+    },
+    {
+      emoji:"📊", title:"TableCRM Order", sub:"Веб-приложение управления заказами",
+      desc:"Фронтенд на Next.js + TypeScript для работы с заказами, интеграция с TableCRM. App Router, компоненты на React, деплой на Vercel.",
+      metrics:[{v:"Next.js",k:"App Router"},{v:"TypeScript",k:"типобезопасно"},{v:"Vercel",k:"деплой"}],
+      tags:["Next.js","TypeScript","React","Tailwind","Vercel"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/tablecrm-order"}]
+    },
+    {
+      emoji:"🔌", title:"STM32 UART/ADC", sub:"Embedded C на STM32 (Nucleo-F401RE)",
+      desc:"Прошивка на STM32 HAL: управление светодиодом по UART-командам, чтение значений ADC, обработка кнопки через GPIO. Работа с периферией на C.",
+      metrics:[{v:"C",k:"+ STM32 HAL"},{v:"UART",k:"ADC · GPIO"},{v:"Nucleo",k:"F401RE"}],
+      tags:["C","STM32","Embedded","HAL","UART"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/stm32-uart-adc-control"}]
+    },
+    {
+      emoji:"🌈", title:"Photonic Cavity Sim", sub:"Симуляция фотонного кристалла (MEEP)",
+      desc:"Вычислительная электродинамика на Python: моделирование добротности (Q-фактора) фотонно-кристаллического резонатора в зависимости от числа периодов через MEEP (FDTD).",
+      metrics:[{v:"MEEP",k:"FDTD-солвер"},{v:"Python",k:"научные расчёты"},{v:"Q-factor",k:"vs N периодов"}],
+      tags:["Python","MEEP","Photonics","Simulation","NumPy"],
+      links:[{t:"GitHub",h:"https://github.com/F-YOHS/AllairovaDana"}]
+    },
+  ],
+  skills: [
+    { h:"Языки", items:["Python","Go","TypeScript / JavaScript","C","Bash · SQL"] },
+    { h:"ML / Data", items:["PyTorch","XGBoost · CatBoost","scikit-learn · NumPy · pandas","Whisper / WhisperX · NeMo","MEEP (научные расчёты)"] },
+    { h:"Backend / Infra", items:["FastAPI · Next.js","Apache Kafka · микросервисы","Electron · React","Docker · Linux · Git","Embedded (STM32 HAL)"] },
+  ],
+};
+/* ======================================================== */
+
+const $=(id)=>document.getElementById(id);
+$("eyebrow").textContent=CONFIG.eyebrow;
+$("name").innerHTML=`<span class="grad">${CONFIG.name}</span>`;
+$("role").textContent=CONFIG.role + (CONFIG.city ? " · "+CONFIG.city : "");
+$("pitch").textContent=CONFIG.pitch;
+$("contacts").innerHTML=CONFIG.contacts.map(c=>
+  `<a class="btn${c.primary?' primary':''}" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`).join("");
+$("projGrid").innerHTML=CONFIG.projects.map(p=>`
+  <article class="card">
+    <div class="emoji">${p.emoji}</div>
+    <h3>${p.title}</h3>
+    <div class="sub">${p.sub}</div>
+    <p>${p.desc}</p>
+    <div class="metrics">${p.metrics.map(m=>`<div class="metric"><b>${m.v}</b>${m.k}</div>`).join("")}</div>
+    <div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>
+    <div class="links">${p.links.map(l=>`<a class="${l.demo?'demo':''}" href="${l.h}" target="_blank" rel="noopener">${l.t} →</a>`).join("")}</div>
+  </article>`).join("");
+$("skillGrid").innerHTML=CONFIG.skills.map(s=>`
+  <div class="skillcol"><h4>${s.h}</h4><ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("");
+$("footer").innerHTML=`${CONFIG.name} · <a href="https://github.com/F-YOHS">github.com/F-YOHS</a> · <a href="mailto:vvadimbocharov@gmail.com">vvadimbocharov@gmail.com</a>`;
+document.title=`${CONFIG.name} — Python / ML разработчик`;
+</script>
+</body>
+</html>
