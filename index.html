@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Портфолио — Python / ML разработчик</title>
-<meta name="description" content="Портфолио разработчика: ML, Python-бэкенд, ASR, full-stack. Проекты, стек, контакты.">
+<title>Вадим Бочаров, Python / ML разработчик</title>
+<meta name="description" content="Вадим Бочаров: машинное обучение, Python и Go на бэкенде, ASR, full-stack. Проекты, стек, контакты.">
 <style>
   :root{
     --bg:#0a0e14; --bg2:#11161f; --card:#161c27; --line:#222b3a;
@@ -39,7 +39,6 @@
   @media(max-width:720px){.grid{grid-template-columns:1fr}.contacts{gap:8px}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;transition:.18s;position:relative;overflow:hidden}
   .card:hover{border-color:var(--accent2);transform:translateY(-3px);box-shadow:0 12px 40px -12px rgba(79,140,255,.25)}
-  .card .emoji{font-size:30px;margin-bottom:12px}
   .card h3{font-size:20px;font-weight:750;margin-bottom:4px}
   .card .sub{color:var(--accent);font-size:13px;font-weight:600;margin-bottom:12px}
   .card p{color:#bcc8d6;font-size:14.5px;flex:1}
@@ -96,13 +95,13 @@
 </footer>
 
 <script>
-/* ============ ЕДИНЫЙ КОНФИГ — правится здесь ============ */
+/* Единый конфиг: правится здесь */
 const CONFIG = {
   name: "Вадим Бочаров",
   role: "Python / Go / ML разработчик · Backend · Data",
   eyebrow: "Открыт к удалённой работе · РФ",
   city: "Казань",
-  pitch: "Делаю проекты полного цикла: от ML-пайплайна и Go-микросервисов до фронтенда и embedded. ВКР по ML довёл до сервиса в проде, собрал event-driven микросервисы на Go + Kafka, full-stack ASR с диаризацией спикеров, веб- и десктоп-приложения. Ищу удалённую работу — рассмотрю Junior/Middle позиции.",
+  pitch: "Довожу проекты до рабочего состояния целиком: от пайплайна данных до сервиса, который живёт в проде и которым пользуются. Диплом по машинному обучению превратил в веб-приложение на HuggingFace, собрал событийные микросервисы на Go и Kafka, написал ASR с разделением по говорящим, десктопное приложение на Electron и прошивку под STM32. Ищу удалённую работу, уровень Junior или Middle.",
   contacts: [
     { label: "GitHub", href: "https://github.com/F-YOHS", primary:false },
     { label: "Демо ML (HuggingFace)", href: "https://huggingface.co/spaces/ADRMLAU/gold-behavior-predictor", primary:false },
@@ -111,57 +110,57 @@ const CONFIG = {
   ],
   projects: [
     {
-      emoji:"🔬", title:"AlloyPredictor", sub:"ML-предиктор свойств сплавов · ВКР",
-      desc:"По составу и пористости сплава предсказывает 5 механических свойств. Гибридная модель: нейросеть-ансамбль (E,G) + XGBoost (σ,σв) + CatBoost (ε). Magpie-признаки дают экстраполяцию на новые составы. Доведено до прода на HuggingFace.",
+      title:"AlloyPredictor", sub:"ML-предиктор свойств сплавов · ВКР",
+      desc:"По составу и пористости сплава предсказывает пять механических свойств. Под каждое свойство своя модель: нейросеть для E и G, XGBoost для σ и σв, CatBoost для ε. Физические Magpie-признаки вместо one-hot дают прогноз на составах, которых в обучении не было. Работает на HuggingFace.",
       metrics:[{v:"R²≈0.84",k:"средний по 5 св-вам"},{v:"~1000",k:"сплавов в обучении"},{v:"85",k:"элементов таблицы"}],
       tags:["Python","PyTorch","XGBoost","CatBoost","scikit-learn","Gradio","HF Spaces"],
       links:[{t:"Живое демо",h:"https://huggingface.co/spaces/ADRMLAU/gold-behavior-predictor",demo:true},{t:"GitHub",h:"https://github.com/F-YOHS/alloy-predictor"}]
     },
     {
-      emoji:"⚖️", title:"Court Transcriber", sub:"Full-stack ASR с диаризацией спикеров",
-      desc:"Расшифровка длинных заседаний с разделением «кто говорил». FastAPI-бэкенд, очередь задач, WhisperX на GPU, диаризация NeMo Sortformer/pyannote, юридический словарь, веб-клиент и экспорт протокола. Сменные ASR-движки через .env.",
+      title:"Court Transcriber", sub:"Full-stack ASR с диаризацией спикеров",
+      desc:"Расшифровывает многочасовые заседания и раскладывает текст по говорящим. FastAPI, очередь задач, WhisperX на GPU, диаризация через NeMo Sortformer или pyannote, словарь юридических терминов, веб-клиент и выгрузка протокола. Движок распознавания переключается в .env.",
       metrics:[{v:"3",k:"ASR-бэкенда"},{v:"2",k:"движка диаризации"},{v:"∞",k:"длина записи (очередь)"}],
       tags:["Python","FastAPI","WhisperX","NeMo","pyannote","CUDA","JS"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/court-transcriber"}]
     },
     {
-      emoji:"🎙️", title:"MeetScribe", sub:"Локальный AI-ассистент онлайн-встреч",
-      desc:"Десктоп-приложение: real-time транскрипция системного звука и подсказки от локальной LLM — полностью оффлайн, ни байта аудио в облако. Electron ↔ Python-сайдкар по stdio, VAD режет тишину до Whisper, LLM на локальном Ollama.",
+      title:"MeetScribe", sub:"Локальный AI-ассистент онлайн-встреч",
+      desc:"Слушает системный звук, расшифровывает встречу на лету и подсказывает через локальную модель. Ни байта аудио не уходит в облако. Electron говорит с питоновским сайдкаром по stdio, детектор голоса срезает тишину до Whisper, отвечает локальный Ollama.",
       metrics:[{v:"100%",k:"оффлайн / on-device"},{v:"real-time",k:"транскрипция"},{v:"GPU",k:"ускорение CUDA"}],
       tags:["Electron","React","TypeScript","Tailwind","Python","faster-whisper","Ollama"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/meetscribe"}]
     },
     {
-      emoji:"📥", title:"TikTok → Каталог проектов", sub:"Data-пайплайн: видео → структурированные данные",
-      desc:"Из сохранённых TikTok-роликов собирает поисковый каталог упомянутых инструментов. yt-dlp + tikwm → Whisper (речь) + OCR (слайды) → извлечение названий проектов → самодостаточный index.html с поиском и фильтром.",
+      title:"TikTok → Каталог проектов", sub:"Data-пайплайн: видео → структурированные данные",
+      desc:"Собирает из сохранённых роликов поисковый каталог упомянутых инструментов. Скачивание через yt-dlp и tikwm, речь через Whisper, текст со слайдов через OCR, на выходе один index.html с поиском и фильтрами.",
       metrics:[{v:"33",k:"ролика разобрано"},{v:"176",k:"проектов извлечено"},{v:"10",k:"категорий"}],
       tags:["Python","yt-dlp","Whisper","ffmpeg","OCR","Bash"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/tiktok-saved-catalog"}]
     },
     {
-      emoji:"📨", title:"Kafka-not", sub:"Event-driven микросервисы на Go + Kafka",
-      desc:"Пайплайн уведомлений на событиях: регистрация пользователя публикует событие в Kafka, а сервисы email / SMS / analytics реагируют независимо через топики. Go, Docker Compose, чистое разделение сервисов.",
+      title:"Kafka-not", sub:"Event-driven микросервисы на Go + Kafka",
+      desc:"Регистрация пользователя публикует событие в Kafka, а почта, SMS и аналитика разбирают его каждый сам по себе, через отдельные топики. Четвёртый обработчик добавляется, не трогая первые три.",
       metrics:[{v:"4",k:"микросервиса"},{v:"Kafka",k:"событийная шина"},{v:"Go",k:"+ Docker"}],
       tags:["Go","Apache Kafka","Docker","Microservices","Event-driven"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/Kafka-not"}]
     },
     {
-      emoji:"📊", title:"TableCRM Order", sub:"Веб-приложение управления заказами",
-      desc:"Фронтенд на Next.js + TypeScript для работы с заказами, интеграция с TableCRM. App Router, компоненты на React, деплой на Vercel.",
+      title:"TableCRM Order", sub:"Веб-приложение управления заказами",
+      desc:"Оформление заказов поверх публичного API TableCRM: поиск контрагента по телефону, подбор товаров, выбор склада и кассы. Next.js на App Router, TypeScript, деплой на Vercel.",
       metrics:[{v:"Next.js",k:"App Router"},{v:"TypeScript",k:"типобезопасно"},{v:"Vercel",k:"деплой"}],
       tags:["Next.js","TypeScript","React","Tailwind","Vercel"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/tablecrm-order"}]
     },
     {
-      emoji:"🔌", title:"STM32 UART/ADC", sub:"Embedded C на STM32 (Nucleo-F401RE)",
-      desc:"Прошивка на STM32 HAL: управление светодиодом по UART-командам, чтение значений ADC, обработка кнопки через GPIO. Работа с периферией на C.",
+      title:"STM32 UART/ADC", sub:"Embedded C на STM32 (Nucleo-F401RE)",
+      desc:"Прошивка на STM32 HAL: светодиод управляется командами по UART, отдельная команда снимает значение с АЦП, отрабатывается нажатие кнопки. Всё на прерываниях, основной цикл не блокируется.",
       metrics:[{v:"C",k:"+ STM32 HAL"},{v:"UART",k:"ADC · GPIO"},{v:"Nucleo",k:"F401RE"}],
       tags:["C","STM32","Embedded","HAL","UART"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/stm32-uart-adc-control"}]
     },
     {
-      emoji:"🌈", title:"Photonic Cavity Sim", sub:"Симуляция фотонного кристалла (MEEP)",
-      desc:"Вычислительная электродинамика на Python: моделирование добротности (Q-фактора) фотонно-кристаллического резонатора в зависимости от числа периодов через MEEP (FDTD).",
+      title:"Photonic Cavity Sim", sub:"Симуляция фотонного кристалла (MEEP)",
+      desc:"Расчёт во временной области в MEEP: как добротность фотонно-кристаллического резонатора растёт с числом периодов зеркала. Воспроизводит результат статьи Fan et al. 1995 года.",
       metrics:[{v:"MEEP",k:"FDTD-солвер"},{v:"Python",k:"научные расчёты"},{v:"Q-factor",k:"vs N периодов"}],
       tags:["Python","MEEP","Photonics","Simulation","NumPy"],
       links:[{t:"GitHub",h:"https://github.com/F-YOHS/AllairovaDana"}]
@@ -184,7 +183,6 @@ $("contacts").innerHTML=CONFIG.contacts.map(c=>
   `<a class="btn${c.primary?' primary':''}" href="${c.href}" target="_blank" rel="noopener">${c.label}</a>`).join("");
 $("projGrid").innerHTML=CONFIG.projects.map(p=>`
   <article class="card">
-    <div class="emoji">${p.emoji}</div>
     <h3>${p.title}</h3>
     <div class="sub">${p.sub}</div>
     <p>${p.desc}</p>
@@ -195,7 +193,7 @@ $("projGrid").innerHTML=CONFIG.projects.map(p=>`
 $("skillGrid").innerHTML=CONFIG.skills.map(s=>`
   <div class="skillcol"><h4>${s.h}</h4><ul>${s.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("");
 $("footer").innerHTML=`${CONFIG.name} · <a href="https://github.com/F-YOHS">github.com/F-YOHS</a> · <a href="mailto:vvadimbocharov@gmail.com">vvadimbocharov@gmail.com</a>`;
-document.title=`${CONFIG.name} — Python / ML разработчик`;
+document.title=`${CONFIG.name}, Python / ML разработчик`;
 </script>
 </body>
 </html>
